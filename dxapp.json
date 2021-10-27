@@ -1,0 +1,64 @@
+{
+  "name": "CRAM_TO_FASTQ",
+  "title": "Convert CRAM file to FASTQ format",
+  "summary": "This app convert CRAM to FASTQ file format",
+  "dxapi": "1.0.0",
+  "version": "1.0.0",
+  "inputSpec": [
+    {
+      "name": "input_cram_file",
+      "label": "Input CRAM File",
+      "class": "array:file",
+      "optional": false,
+      "patterns": ["*.cram"],
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "output_forward_read",
+      "label": "Output Forward Read File",
+      "class": "array:file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "output_reverse_read",
+      "label": "Output Reverse Read File",
+      "class": "array:file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/code.sh",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0"
+  },
+  "access": {
+    "network": [
+      "*"
+    ],
+    "project": "CONTRIBUTE"
+  },
+  "regionalOptions": {
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x4"
+        }
+      }
+    }
+  }
+}
